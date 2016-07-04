@@ -46,7 +46,6 @@ from sqlalchemy import desc
 from sqlalchemy import not_
 
 from timesketch.lib.aggregators import heatmap
-from timesketch.lib.aggregators import histogram
 from timesketch.lib.definitions import HTTP_STATUS_CODE_OK
 from timesketch.lib.definitions import HTTP_STATUS_CODE_CREATED
 from timesketch.lib.definitions import HTTP_STATUS_CODE_BAD_REQUEST
@@ -259,7 +258,7 @@ class SketchResource(ResourceMixin, Resource):
                 {
                     u'name': view.name,
                     u'id': view.id
-                } for view in sketch.get_named_views
+                } for view in sketch.get_named_views.all()
             ])
         return self.to_json(sketch, meta=meta)
 
@@ -486,12 +485,6 @@ class AggregationResource(ResourceMixin, Resource):
                     es_client=self.datastore, sketch_id=sketch_id,
                     query=form.query.data, query_filter=query_filter,
                     indices=indices)
-            elif form.aggtype.data == u'histogram':
-                result = histogram(
-                    es_client=self.datastore, sketch_id=sketch_id,
-                    query=form.query.data, query_filter=query_filter,
-                    indices=indices)
-
             else:
                 abort(HTTP_STATUS_CODE_BAD_REQUEST)
 
@@ -618,7 +611,7 @@ class EventAnnotationResource(ResourceMixin, Resource):
                     if annotation not in event.labels:
                         event.labels.append(annotation)
                     toggle = False
-                    if u'__ts_star' or u'__ts_hidden' in form.annotation.data:
+                    if u'__ts_star' in form.annotation.data:
                         toggle = True
                     self.datastore.set_label(
                         searchindex_id, event_id, event_type, sketch.id,

@@ -395,7 +395,6 @@ rect.bordered {
     font-weight: normal;
     background-color: #f1f1f1;
     margin-right:7px;
-    border-radius: 0;
 }
 
 .nav-tabs>li>a:hover {
@@ -418,6 +417,8 @@ rect.bordered {
     margin-left:100px;
     height:100px;
     border-left:2px solid #f5f5f5;
+<<<<<<< HEAD
+=======
 }
 
 .axis {
@@ -441,4 +442,5 @@ rect.bordered {
 
 .label {
     border-radius: 0;
+>>>>>>> google/master
 }

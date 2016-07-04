@@ -34,6 +34,43 @@
           <ts-core-upload-queue></ts-core-upload-queue>
         {%  endif %}
 
+<<<<<<< HEAD
+        <div class="card">
+            <form class="form form-inline" method="get" action="{{ url_for('home_views.home') }}">
+                <input type="search" id="q" name="q" class="search-input" placeholder="Search sketches" value="{{ query }}" autofocus>
+            </form>
+            <br>
+            {% if not sketches.all() %}
+                <form action="{{ url_for('home_views.home') }}" method="post">
+                    No sketches found
+                </form>
+            {% else %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Sketch</th>
+                        <th>Created by</th>
+                        <th>Status</th>
+                        <th style="text-align: center;">Timelines</th>
+                        <th style="text-align: center;">Saved views</th>
+                        <th width="130px">Created</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for sketch in sketches.all() %}
+                        <tr>
+                            <td><a href="{{ url_for('sketch_views.overview', sketch_id=sketch.id) }}">{{ sketch.name }}</a></td>
+                            <td>{{ sketch.user.name }}</td>
+                            <td>{{ sketch.get_status.status }}</td>
+                            <td style="text-align: center;"><a href="{{ url_for('sketch_views.timelines', sketch_id=sketch.id) }}">{{ sketch.timelines|count }}</a></td>
+                            <td style="text-align: center;"><a href="{{ url_for('sketch_views.views', sketch_id=sketch.id) }}">{{ sketch.get_named_views.all()|count }}</a></td>
+                            <td>{{ sketch.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+=======
         {% if sketches.all() %}
         <br><br>
         <div>
@@ -61,6 +98,7 @@
             {% endfor %}
             </tbody>
           </table>
+>>>>>>> google/master
         </div>
         {% endif %}
         <div class="col-md-1"></div>
