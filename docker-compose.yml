@@ -5,6 +5,7 @@ timesketch:
   volumes:
     - ./contrib/ts_config/timesketch.conf:/etc/timesketch.conf
     - ./contrib/ts_data:/usr/local/share/timesketch
+    - /tmp:/tmp
   links:
     - elasticsearch
     - redis
@@ -12,7 +13,7 @@ elasticsearch:
   image: elasticsearch
   volumes:
     - ./contrib/es_config:/usr/share/elasticsearch/config
-#   - ./contrib/es_data:/usr/share/elasticsearch/data
+    - ./contrib/es_data:/usr/share/elasticsearch/data
   ports:
     - "9200"
     - "9300"
