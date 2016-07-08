@@ -1,5 +1,5 @@
 timesketch:
-  build: threatresponse/timesketch
+  image: threatresponse/timesketch
   ports:
     - "5000"
   volumes:
