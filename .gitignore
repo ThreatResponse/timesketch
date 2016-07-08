@@ -9,7 +9,8 @@
 /dependencies/
 /dist/
 /build/
-
+/contrib/ts_data
+/contrib/es_data
 # And don't care about the 'egg'.
 /Timesketch.egg-info
 
