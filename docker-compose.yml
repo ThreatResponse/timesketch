@@ -10,7 +10,7 @@ timesketch:
     - elasticsearch
     - redis
 elasticsearch:
-  image: elasticsearch
+  image: elasticsearch:1.7.5
   volumes:
     - ./contrib/es_config:/usr/share/elasticsearch/config
     - ./contrib/es_data:/usr/share/elasticsearch/data
